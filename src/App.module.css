@@ -1,0 +1,5 @@
+.App {
+  font-family: var(--family);
+  color: var(--clr-text);
+  background: var(--clr-bg);
+}
