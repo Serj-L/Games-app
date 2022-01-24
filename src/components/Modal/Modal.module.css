@@ -1,0 +1,55 @@
+.modalWrapper {
+  position: absolute;
+  inset: 0 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.modalOverlay {
+  position: absolute;
+  inset: 0 0 0 0;
+  background: hsla(0, 0%, 0%, 0.6);
+  z-index: 1;
+}
+
+.modal {
+  background: hsl(0, 0%, 100%);
+  padding: 1.5em;
+  border-radius: var(--radius-md);
+  margin-inline: 1em;
+  position: relative;
+  z-index: 1;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5em;
+  padding-bottom: 1.5em;
+}
+
+.modalTitle {
+  font-size: var(--fs-xxl);
+  font-weight: var(--fw-bold);
+  color: var(--clr-text-dark);
+  margin: 0;
+}
+
+.btnClose {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: var(--transition-duration);
+}
+
+/* hover, focus */
+@media (hover: hover) and (pointer: fine) {
+  .btnClose:hover,
+  .btnClose:focus {
+    color: red;
+  }
+}

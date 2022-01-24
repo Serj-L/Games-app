@@ -1,5 +1,10 @@
 export { default as Container } from './Container/Container';
 export { default as GameCard } from './GameCard/GameCard';
+export { default as BackToGameList } from './BackToGameList/BackToGameList';
+export { default as Portal } from './Portal/Portal';
+export { default as Modal } from './Modal/Modal';
+export { default as Button } from './Button/Button';
+export { default as RockPaperTitleScore } from './RockPaperGame/RockPaperTitleScore/RockPaperTitleScore';
 export { default as CrossIcon } from './Icons/CrossIcon';
 export { default as LizardIcon } from './Icons/LizardIcon';
 export { default as PaperIcon } from './Icons/PaperIcon';

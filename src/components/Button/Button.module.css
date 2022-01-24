@@ -1,0 +1,87 @@
+.btn {
+  align-self: center;
+  min-width: 7em;
+  font-family: var(--family);
+  font-weight: var(--fw-normal);
+  color: var(--clr-text);
+  line-height: 1;
+  letter-spacing: 2px;
+  background-color: inherit;
+  padding: 0.8em 1.5em;
+  border-radius: var(--radius-md);
+  border: 2px solid hsla(0, 100%, 99%, 0.7);
+  cursor: pointer;
+  transition: var(--transition-duration);
+  position: relative;
+  z-index: 1;
+  outline: none;
+}
+
+.btn[data-is-transparent='true'] {
+  color: var(--clr-text);
+  border: 2px solid hsla(0, 100%, 99%, 0.7);
+}
+
+.btn[data-is-transparent='false'] {
+
+  border: 2px solid var(--clr-text-dark);
+}
+
+.btn:disabled {
+  border-color: hsl(217, 16%, 45%);
+  color: hsl(217, 16%, 45%);
+  cursor: default;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  left: -2px;
+  right: 0;
+  top: -2px;
+  bottom: 0;
+  background: var(--clr-text);
+  border-radius: var(--radius-md);
+  z-index: -1;
+  transition: var(--transition-duration) ease-in;
+}
+
+.btn[data-is-shadow='true'] {
+  box-shadow: var(--shadow-sm);
+}
+
+.btn[data-is-transparent='true']::after {
+  transform: scale(0);
+  transform-origin: top;
+}
+
+.btn[data-is-transparent='false']::after {
+  transform: scale(1);
+  background: var(--clr-text-dark);
+}
+
+
+@media (hover: hover) and (pointer: fine) {
+  .btn[data-is-transparent='true']:not(:disabled):hover::after,
+  .btn[data-is-transparent='true']:not(:disabled):focus::after {
+    transform: scale(1);
+    transform-origin: bottom;
+  }
+
+  .btn[data-is-transparent='true']:not(:disabled):hover,
+  .btn[data-is-transparent='true']:not(:disabled):focus {
+    color: var(--clr-text-dark);
+  }
+
+  .btn[data-is-transparent='false']:not(:disabled):hover::after,
+  .btn[data-is-transparent='false']:not(:disabled):focus::after {
+    transform: scale(0);
+  }
+
+  .btn[data-is-transparent='false']:not(:disabled):hover,
+  .btn[data-is-transparent='false']:not(:disabled):focus {
+    color: var(--clr-text-dark);
+  }
+}

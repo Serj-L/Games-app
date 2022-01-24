@@ -1,6 +1,8 @@
 .gamesListTitle {
+  font-size: calc(var(--fs-xxxl) * 1.3);
   text-align: center;
-  padding-bottom: 1.5em;
+  padding-block: 1em;
+  margin: 0;
 }
 
 .gamesListWrapper {
