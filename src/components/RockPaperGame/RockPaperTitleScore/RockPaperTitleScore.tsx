@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { RockPaperGameItemName, RockPaperGameTypes } from '../../../pages/RockPaperGamePage/RockPaperGamePage';
+import { RockPaperGameItemName, RockPaperGameTypes } from '../../../types';
 
 import styles from './RockPaperTitleScore.module.css';
 

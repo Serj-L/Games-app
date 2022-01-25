@@ -5,6 +5,7 @@ interface CrossIconProps {
   height?: number,
   color?: string;
   opacity?: number
+  transitionDuration?: string,
 }
 
 const CrossIcon: FC<CrossIconProps> = ({
@@ -12,13 +13,14 @@ const CrossIcon: FC<CrossIconProps> = ({
   height = 18,
   color = 'currentColor',
   opacity = 0.25,
-
+  transitionDuration = '0.2s',
 }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={width}
       height={height}
+      style={{ transition: `${transitionDuration} ease-in` }}
     >
       <path
         fill={color}

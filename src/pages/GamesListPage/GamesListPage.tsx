@@ -1,8 +1,7 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { RoutesEnum } from '../../types/';
-import { RockPaperGameTypes } from '../../pages/RockPaperGamePage/RockPaperGamePage';
+import { RoutesEnum, RockPaperGameTypes } from '../../types/';
 import { GameCard } from '../../components/';
 
 import styles from './GamesListPage.module.css';

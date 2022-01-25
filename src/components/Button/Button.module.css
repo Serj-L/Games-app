@@ -62,7 +62,7 @@
   background: var(--clr-text-dark);
 }
 
-
+/* hover, focus */
 @media (hover: hover) and (pointer: fine) {
   .btn[data-is-transparent='true']:not(:disabled):hover::after,
   .btn[data-is-transparent='true']:not(:disabled):focus::after {

@@ -1,67 +1,25 @@
 import { FC, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { LocalStorageKeys } from '../../types/';
+import {
+  LocalStorageKeys,
+  RockPaperGameTypes,
+  RockPaperGameItemName,
+  IRockPaperGameItem,
+} from '../../types/';
 
 import {
   BackToGameList,
   RockPaperTitleScore,
   Modal,
   Button,
+  RockPaperGameItem,
 } from '../../components/';
 
 import rulesNormalGame from '../../images/rock-paper/image-rules.svg';
 import rulesExtendedGame from '../../images/rock-paper/image-rules-bonus.svg';
 
 import styles from './RockPaperGamePage.module.css';
-
-// eslint-disable-next-line no-unused-vars
-export enum RockPaperGameTypes {NORMAL = 'normal', EXTENDED = 'extended'}
-
-export type RockPaperGameItemName = 'rock' | 'paper' | 'scissors' | 'lizard' | 'spock';
-
-interface IRockPaperGameItem {
-  name: RockPaperGameItemName,
-  beats: RockPaperGameItemName[],
-}
-
-const RockPaperGameItems: IRockPaperGameItem[] = [
-  {
-    name: 'rock',
-    beats: [
-      'scissors',
-      'lizard',
-    ],
-  },
-  {
-    name: 'paper',
-    beats: [
-      'rock',
-      'spock',
-    ],
-  },
-  {
-    name: 'scissors',
-    beats: [
-      'paper',
-      'lizard',
-    ],
-  },
-  {
-    name: 'spock',
-    beats: [
-      'rock',
-      'scissors',
-    ],
-  },
-  {
-    name: 'lizard',
-    beats: [
-      'paper',
-      'spock',
-    ],
-  },
-];
 
 interface RockPaperGamePageProps {}
 
@@ -100,15 +58,27 @@ const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
   };
 
   return (
-    <div className={styles.RockPaperGamePageWrapper}>
+    <div className={styles.rockPaperGamePageWrapper}>
       <RockPaperTitleScore
         gameItems={gameItems}
         gameScore={score}
         gameType={gameType}
         onClickHandler={onScoreClickHandler}
       />
-      <h1>{`${gameType} game`}</h1>
-      <div className={styles.RockPaperGamePageControls}>
+      <div className={styles.rockPaperGameContentWarpper}>
+        <h1>{`${gameType} game`}</h1>
+        {gameItems.map(item => {
+          return (
+            <RockPaperGameItem
+              key={item}
+              itemName={item}
+              isBigSize={false}
+              onClickHandler={(name) => console.log(name)}
+            />
+          );
+        })}
+      </div>
+      <div className={styles.rockPaperGamePageControls}>
         <BackToGameList />
         <Button
           title='RULES'

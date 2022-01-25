@@ -1,8 +1,15 @@
-.RockPaperGamePageWrapper {
+.rockPaperGamePageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   padding-block: 2.5rem;
 }
 
-.RockPaperGamePageControls {
+.rockPaperGameContentWarpper {
+  flex: 1;
+}
+
+.rockPaperGamePageControls {
   display: flex;
   justify-content: space-between;
   align-items: center;

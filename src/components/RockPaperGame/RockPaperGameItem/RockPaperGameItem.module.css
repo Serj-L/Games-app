@@ -1,0 +1,64 @@
+.rockPaperGameItemWrapper[data-item-name='rock'] {
+  --clr-border: hsl(349, 70%, 56%);
+  --clr-shadow: hsla(349, 71%, 52%, 0.85);
+}
+
+.rockPaperGameItemWrapper[data-item-name='paper'] {
+  --clr-border: hsl(230, 89%, 65%);
+  --clr-shadow: hsla(230, 89%, 62%, 0.85);
+}
+
+.rockPaperGameItemWrapper[data-item-name='scissors'] {
+  --clr-border: hsl(40, 84%, 53%);
+  --clr-shadow: hsla(39, 89%, 49%, 0.85);
+}
+
+.rockPaperGameItemWrapper[data-item-name='lizard'] {
+  --clr-border: hsl(261, 72%, 63%);
+  --clr-shadow: hsla(261, 73%, 60%, 0.85);
+}
+
+.rockPaperGameItemWrapper[data-item-name='spock'] {
+  --clr-border: hsl(189, 58%, 57%);
+  --clr-shadow: rgb(56, 159, 177);
+}
+
+.rockPaperGameItemWrapper {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1;
+  background: var(--clr-text);
+  border: solid var(--clr-border);
+  border-radius: 50%;
+  position: relative;
+  box-shadow:
+    inset 0px 10px 1px -4px hsla(210, 3%, 85%, 0.85),
+    0px 9px 1px -2px var(--clr-shadow);
+  transition: var(--transition-duration);
+  outline: none;
+}
+
+.rockPaperGameItemWrapper[data-is-big = 'true'] {
+  width: 280px;
+  border-width: 30px;
+}
+
+.rockPaperGameItemWrapper[data-is-big = 'false'] {
+  width: 180px;
+  border-width: 20px;
+  cursor: pointer;
+}
+
+.rockPaperGameItemIcon {
+  width: 50%;
+  transition: var(--transition-duration);
+}
+
+/* hover, focus */
+@media (hover: hover) and (pointer: fine) {
+  .rockPaperGameItemWrapper[data-is-big = 'false']:hover .rockPaperGameItemIcon,
+  .rockPaperGameItemWrapper[data-is-big = 'false']:focus .rockPaperGameItemIcon {
+    transform: scale(1.25);
+  }
+}
