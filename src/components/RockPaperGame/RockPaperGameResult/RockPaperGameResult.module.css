@@ -1,0 +1,55 @@
+.rockPaperGameResultWrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5em;
+}
+
+.choosenItemCard,
+.resultControls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+}
+
+.choosenItemCardTitle {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.2em;
+  position: relative;
+  z-index: 1;
+}
+
+.resultControls {
+  position: relative;
+  z-index: 1;
+  transition: var(--transition-duration) ease-in;
+  transform: scaleX(0);
+  transform-origin: center;
+}
+
+.resultControls > * {
+  width: 100%;
+  max-width: max-content;
+}
+
+.resultControls[data-is-visible='true'] {
+  animation: scale 0.4s ease-in 0.1s forwards;
+}
+
+.resultText {
+  font-size: calc(var(--fs-xxxl) * 2);
+  font-weight: var(--fw-bold);
+  white-space: nowrap;
+}
+
+@keyframes scale {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}

@@ -6,4 +6,5 @@ export { default as Modal } from './Modal/Modal';
 export { default as Button } from './Button/Button';
 export { default as RockPaperTitleScore } from './RockPaperGame/RockPaperTitleScore/RockPaperTitleScore';
 export { default as RockPaperGameItem } from './RockPaperGame/RockPaperGameItem/RockPaperGameItem';
+export { default as RockPaperGameResult } from './RockPaperGame/RockPaperGameResult/RockPaperGameResult';
 export { default as CrossIcon } from './Icons/CrossIcon';

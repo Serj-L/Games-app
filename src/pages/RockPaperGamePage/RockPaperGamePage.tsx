@@ -1,12 +1,16 @@
-import { FC, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
-  LocalStorageKeys,
   RockPaperGameTypes,
   RockPaperGameItemName,
-  IRockPaperGameItem,
+  IRockPaperGameChoosenItem,
 } from '../../types/';
+
+import {
+  getRockPaperGameScoreFromLocalStorage,
+  setRockPaperGameScoreToLocalStorage,
+} from '../../api/LocalStorage';
 
 import {
   BackToGameList,
@@ -14,6 +18,7 @@ import {
   Modal,
   Button,
   RockPaperGameItem,
+  RockPaperGameResult,
 } from '../../components/';
 
 import rulesNormalGame from '../../images/rock-paper/image-rules.svg';
@@ -23,16 +28,24 @@ import styles from './RockPaperGamePage.module.css';
 
 interface RockPaperGamePageProps {}
 
+const randomInteger = (minInt: number, maxInt: number): number => {
+  return Math.floor(minInt + Math.random() * (maxInt + 1 - minInt));
+};
+const choosenItemsInitialValues: IRockPaperGameChoosenItem = {
+  player: 'rock',
+  ai:'rock',
+};
+
 const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
-  const { gameType = RockPaperGameTypes.NORMAL } = useParams();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalTitle, setModalTitle] = useState<string>('');
-  const [score, setScore] = useState<number>(gameType === RockPaperGameTypes.NORMAL
-    ? Number(localStorage.getItem(LocalStorageKeys.ROCK_PAPER_NORMAL_GAME_SCORE))
-    : Number(localStorage.getItem(LocalStorageKeys.ROCK_PAPER_EXTENDED_GAME_SCORE)));
+  const { gameType = RockPaperGameTypes.NORMAL } = useParams();
+  const [score, setScore] = useState<number>(getRockPaperGameScoreFromLocalStorage(gameType));
   const gameItems: RockPaperGameItemName[] = gameType === RockPaperGameTypes.NORMAL
     ? ['rock', 'paper', 'scissors']
     : ['rock', 'paper', 'scissors', 'lizard', 'spock'];
+  const [isShowResult, setIsShowResult] = useState<boolean>(false);
+  const [choosenItems, setChoosenItems] = useState<IRockPaperGameChoosenItem>(choosenItemsInitialValues);
 
   const onScoreClickHandler = () => {
     if (!score) {
@@ -42,20 +55,42 @@ const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
     setIsModalOpen(true);
   };
 
+  const onConfirmResetHandler = () => {
+    setScore(0);
+    setRockPaperGameScoreToLocalStorage(gameType, 0);
+    setIsModalOpen(false);
+  };
+
+  const onPlayerChooseHandler = (playerChoice: RockPaperGameItemName) => {
+    const aiChoice = gameItems[randomInteger(0, gameItems.length - 1)];
+
+    setChoosenItems({
+      player: playerChoice,
+      ai: aiChoice,
+    });
+
+    setIsShowResult(true);
+  };
+
+  const changeScoreHandler = useCallback((result: number) => {
+    setScore(prevScore => prevScore + result);
+  }, []);
+
+  const onPlayAgainButtonHandler = useCallback(() => {
+    setIsShowResult(false);
+  }, []);
+
   const onRulesButtonClickHandler = () => {
     setModalTitle('RULES');
     setIsModalOpen(true);
   };
 
-  const onConfirmResetHandler = () => {
-    const localStorageKey = gameType === RockPaperGameTypes.NORMAL
-      ? LocalStorageKeys.ROCK_PAPER_NORMAL_GAME_SCORE
-      : LocalStorageKeys.ROCK_PAPER_EXTENDED_GAME_SCORE;
-
-    setScore(0);
-    localStorage.setItem(localStorageKey, '0');
-    setIsModalOpen(false);
-  };
+  useEffect(() => {
+    if (score === getRockPaperGameScoreFromLocalStorage(gameType)) {
+      return;
+    }
+    setRockPaperGameScoreToLocalStorage(gameType, score);
+  }, [gameType, score]);
 
   return (
     <div className={styles.rockPaperGamePageWrapper}>
@@ -66,17 +101,25 @@ const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
         onClickHandler={onScoreClickHandler}
       />
       <div className={styles.rockPaperGameContentWarpper}>
-        <h1>{`${gameType} game`}</h1>
-        {gameItems.map(item => {
-          return (
-            <RockPaperGameItem
-              key={item}
-              itemName={item}
-              isBigSize={false}
-              onClickHandler={(name) => console.log(name)}
-            />
-          );
-        })}
+        { isShowResult
+          ? <RockPaperGameResult
+            choosenItems={choosenItems}
+            onPlayAgainButtonHandler={onPlayAgainButtonHandler}
+            changeScore={changeScoreHandler}
+          />
+          : <div className={styles.rockPaperGameItemsWarpper}>
+            {gameItems.map(item => {
+              return (
+                <RockPaperGameItem
+                  key={item}
+                  itemName={item}
+                  isBigSize={false}
+                  onClickHandler={(itemName) => onPlayerChooseHandler(itemName)}
+                />
+              );
+            })}
+          </div>
+        }
       </div>
       <div className={styles.rockPaperGamePageControls}>
         <BackToGameList />
@@ -105,6 +148,7 @@ const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
                   title='YES'
                   fontSize={18}
                   isTransparent={false}
+                  isDark={true}
                   isShadow={true}
                   onClickHandler={onConfirmResetHandler}
                 />
@@ -112,6 +156,7 @@ const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
                   title='NO'
                   fontSize={18}
                   isTransparent={false}
+                  isDark={true}
                   isShadow={true}
                   onClickHandler={() => setIsModalOpen(false)}
                 />

@@ -1,36 +1,28 @@
 .btn {
+  --color: var(--clr-text);
+  --color-bg: var(--clr-text);
+  --color-border: hsla(0, 100%, 99%, 0.7);
+  --transform-type: scale(0);
+  --transform-origin: top;
+}
+
+.btn {
   align-self: center;
   min-width: 7em;
   font-family: var(--family);
   font-weight: var(--fw-normal);
-  color: var(--clr-text);
+  color: var(--color);
   line-height: 1;
   letter-spacing: 2px;
   background-color: inherit;
   padding: 0.8em 1.5em;
   border-radius: var(--radius-md);
-  border: 2px solid hsla(0, 100%, 99%, 0.7);
-  cursor: pointer;
+  border: 2px solid var(--color-border);
   transition: var(--transition-duration);
   position: relative;
   z-index: 1;
   outline: none;
-}
-
-.btn[data-is-transparent='true'] {
-  color: var(--clr-text);
-  border: 2px solid hsla(0, 100%, 99%, 0.7);
-}
-
-.btn[data-is-transparent='false'] {
-
-  border: 2px solid var(--clr-text-dark);
-}
-
-.btn:disabled {
-  border-color: hsl(217, 16%, 45%);
-  color: hsl(217, 16%, 45%);
-  cursor: default;
+  cursor: pointer;
 }
 
 .btn::after {
@@ -42,46 +34,69 @@
   right: 0;
   top: -2px;
   bottom: 0;
-  background: var(--clr-text);
+  background: var(--color-bg);
   border-radius: var(--radius-md);
   z-index: -1;
+  transform: var(--transform-type);
+  transform-origin: var(--transform-origin);
   transition: var(--transition-duration) ease-in;
+}
+
+.btn:disabled {
+  --color: hsl(217, 16%, 45%);
+  --color-border: hsl(217, 16%, 45%);
+  cursor: default;
+}
+
+.btn[data-is-transparent='false'] {
+  --transform-type: scale(1);
+}
+
+.btn[data-is-transparent='true'][data-is-dark='true'] {
+  --color: var(--clr-text-dark);
+  --color-bg: var(--clr-text-dark);
+  --color-border: var(--clr-text-dark);
+}
+
+.btn[data-is-transparent='false'][data-is-dark='true'] {
+  --color-bg: var(--clr-text-dark);
+  --color-border: var(--clr-text-dark);
+  --transform-type: scale(1)
+}
+
+.btn[data-is-transparent='false'][data-is-dark='false'] {
+  --color: var(--clr-text-dark);
+  --transform-type: scale(1)
 }
 
 .btn[data-is-shadow='true'] {
   box-shadow: var(--shadow-sm);
 }
 
-.btn[data-is-transparent='true']::after {
-  transform: scale(0);
-  transform-origin: top;
-}
-
-.btn[data-is-transparent='false']::after {
-  transform: scale(1);
-  background: var(--clr-text-dark);
-}
-
 /* hover, focus */
 @media (hover: hover) and (pointer: fine) {
-  .btn[data-is-transparent='true']:not(:disabled):hover::after,
-  .btn[data-is-transparent='true']:not(:disabled):focus::after {
-    transform: scale(1);
-    transform-origin: bottom;
-  }
-
   .btn[data-is-transparent='true']:not(:disabled):hover,
   .btn[data-is-transparent='true']:not(:disabled):focus {
-    color: var(--clr-text-dark);
+    --transform-type: scale(1);
+    --transform-origin: bottom;
+  }
+
+  .btn[data-is-transparent='true'][data-is-dark='true']:not(:disabled):hover,
+  .btn[data-is-transparent='true'][data-is-dark='true']:not(:disabled):focus,
+  .btn[data-is-transparent='false'][data-is-dark='false']:not(:disabled):hover,
+  .btn[data-is-transparent='false'][data-is-dark='false']:not(:disabled):focus {
+    --color: var(--clr-text);
+  }
+
+  .btn[data-is-transparent='true'][data-is-dark='false']:not(:disabled):hover,
+  .btn[data-is-transparent='true'][data-is-dark='false']:not(:disabled):focus,
+  .btn[data-is-transparent='false'][data-is-dark='true']:not(:disabled):hover,
+  .btn[data-is-transparent='false'][data-is-dark='true']:not(:disabled):focus {
+    --color: var(--clr-text-dark);
   }
 
   .btn[data-is-transparent='false']:not(:disabled):hover::after,
   .btn[data-is-transparent='false']:not(:disabled):focus::after {
     transform: scale(0);
-  }
-
-  .btn[data-is-transparent='false']:not(:disabled):hover,
-  .btn[data-is-transparent='false']:not(:disabled):focus {
-    color: var(--clr-text-dark);
   }
 }

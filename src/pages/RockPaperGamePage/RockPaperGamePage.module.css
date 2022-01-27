@@ -6,6 +6,7 @@
 }
 
 .rockPaperGameContentWarpper {
+  display: flex;
   flex: 1;
 }
 

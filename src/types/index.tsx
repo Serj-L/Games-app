@@ -24,5 +24,8 @@ export type RockPaperGameItemName = 'rock' | 'paper' | 'scissors' | 'lizard' | '
 export interface IRockPaperGameItem {
   name: RockPaperGameItemName,
   beats: RockPaperGameItemName[],
-  icon: string,
+}
+export interface IRockPaperGameChoosenItem {
+  player: RockPaperGameItemName,
+  ai: RockPaperGameItemName,
 }

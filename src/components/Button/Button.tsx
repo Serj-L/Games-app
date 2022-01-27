@@ -8,6 +8,7 @@ interface ButtonProps {
   isDissabled?: boolean,
   isTransparent?: boolean,
   isShadow?: boolean,
+  isDark?: boolean,
   onClickHandler: () => void;
 }
 
@@ -17,6 +18,7 @@ const Button: FC<ButtonProps> = ({
   isDissabled = false,
   isTransparent = true,
   isShadow = false,
+  isDark = false,
   onClickHandler,
 }) => {
   return (
@@ -26,6 +28,7 @@ const Button: FC<ButtonProps> = ({
       disabled={isDissabled}
       data-is-transparent={isTransparent}
       data-is-shadow={isShadow}
+      data-is-dark={isDark}
       onClick={(e) => {
         e.currentTarget.blur();
         onClickHandler();

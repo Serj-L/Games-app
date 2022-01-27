@@ -5,6 +5,7 @@
   padding: 1.5em;
   border: 3px solid hsl(217, 16%, 45%);
   border-radius: var(--radius-lg);
+  z-index: 1;
 }
 
 .titleWrapper {
