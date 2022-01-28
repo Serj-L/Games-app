@@ -23,6 +23,8 @@ import {
 
 import rulesNormalGame from '../../images/rock-paper/image-rules.svg';
 import rulesExtendedGame from '../../images/rock-paper/image-rules-bonus.svg';
+import triangleBg from '../../images/rock-paper/bg-triangle.svg';
+import pentagonBg from '../../images/rock-paper/bg-pentagon.svg';
 
 import styles from './RockPaperGamePage.module.css';
 
@@ -100,6 +102,7 @@ const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
         gameType={gameType}
         onClickHandler={onScoreClickHandler}
       />
+
       <div className={styles.rockPaperGameContentWarpper}>
         { isShowResult
           ? <RockPaperGameResult
@@ -107,18 +110,27 @@ const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
             onPlayAgainButtonHandler={onPlayAgainButtonHandler}
             changeScore={changeScoreHandler}
           />
-          : <div className={styles.rockPaperGameItemsWarpper}>
+          : <ul
+            className={styles.rockPaperGameItemsList}
+            data-is-extended={gameType === RockPaperGameTypes.EXTENDED}
+            style={{ backgroundImage: `url(${gameType === RockPaperGameTypes.NORMAL ? triangleBg : pentagonBg })` }}
+          >
             {gameItems.map(item => {
               return (
-                <RockPaperGameItem
+                <li
                   key={item}
-                  itemName={item}
-                  isBigSize={false}
-                  onClickHandler={(itemName) => onPlayerChooseHandler(itemName)}
-                />
+                  className={styles.rockPaperGameListItemWarpper}
+                  data-item-name={item}
+                >
+                  <RockPaperGameItem
+                    itemName={item}
+                    isBigSize={false}
+                    onClickHandler={(itemName) => onPlayerChooseHandler(itemName)}
+                  />
+                </li>
               );
             })}
-          </div>
+          </ul>
         }
       </div>
       <div className={styles.rockPaperGamePageControls}>
@@ -129,6 +141,7 @@ const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
           onClickHandler={onRulesButtonClickHandler}
         />
       </div>
+
       <Modal
         isOpen={isModalOpen}
         modalTitle={modalTitle}
