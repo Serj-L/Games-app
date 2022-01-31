@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { RoutesEnum, RockPaperGameTypes } from '../../types/';
@@ -15,6 +15,15 @@ const GamesListPage: FC<GamesListPageProps> = () => {
   const navigate = useNavigate();
 
   const onGameCardClickHandler = (path: string) => navigate(path);
+
+  useEffect(() => {
+    if (!window.scrollY) {
+      return;
+    }
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
 
   return (
     <>

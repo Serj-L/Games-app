@@ -13,4 +13,13 @@
   padding: 2.5em 0;
   margin: 0;
   list-style: none;
+  opacity: 0;
+  animation: fade-in 0.2s ease-in 0s forwards;
+}
+
+/* animation */
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
 }

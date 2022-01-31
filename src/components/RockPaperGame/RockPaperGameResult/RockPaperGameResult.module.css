@@ -1,9 +1,12 @@
 .rockPaperGameResultWrapper {
-  flex: 1;
-  display: flex;
-  justify-content: center;
+  display: grid;
   align-items: center;
-  gap: 5em;
+  justify-items: center;
+  grid-template-areas: 'player result ai';
+  column-gap: 5em;
+  padding-block: 2.5em;
+  opacity: 0;
+  animation: fade-in 0.2s ease-in 0s forwards;
 }
 
 .choosenItemCard,
@@ -14,20 +17,40 @@
   gap: 2em;
 }
 
+.choosenItemCard {
+  --translate-to-zero: translateX(0);
+}
+
+.choosenItemCard[data-is-player='true'] {
+  grid-area: player;
+  transform: translateX(50%);
+}
+
+.choosenItemCard[data-is-ai='true'] {
+  grid-area: ai;
+  transform: translateX(-50%);
+}
+
+.choosenItemCard[data-is-outlined='false'] {
+  position: relative;
+  z-index: 1;
+}
+
 .choosenItemCardTitle {
   font-size: var(--fs-xl);
   font-weight: var(--fw-bold);
+  white-space: nowrap;
   letter-spacing: 0.2em;
   position: relative;
   z-index: 1;
 }
 
 .resultControls {
+  grid-area: result;
   position: relative;
   z-index: 1;
-  transition: var(--transition-duration) ease-in;
-  transform: scaleX(0);
-  transform-origin: center;
+  opacity: 0;
+  transform: translateY(50%);
 }
 
 .resultControls > * {
@@ -35,8 +58,12 @@
   max-width: max-content;
 }
 
-.resultControls[data-is-visible='true'] {
-  animation: scale 0.4s ease-in 0.1s forwards;
+.rockPaperGameResultWrapper[data-is-ai-choice-visible='true'] .choosenItemCard {
+  animation: choice 0.2s ease-in 0.6s forwards;
+}
+
+.rockPaperGameResultWrapper[data-is-result-visible='true'] .resultControls {
+  animation: result 0.2s ease-in 0s forwards;
 }
 
 .resultText {
@@ -45,11 +72,109 @@
   white-space: nowrap;
 }
 
-@keyframes scale {
-  from {
-    transform: scaleX(0);
-  }
+/* animation */
+@keyframes fade-in {
   to {
-    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes choice {
+  to {
+    transform: var(--translate-to-zero);
+  }
+}
+
+@keyframes result {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* adaptive */
+@media (max-width: 992px) {
+  .rockPaperGameResultWrapper {
+    row-gap: 2em;
+  }
+}
+
+@media (max-width: 910px) {
+  .choosenItemCardTitle {
+    font-size: var(--fs-lg);
+  }
+
+  .resultControls {
+    gap: 1em;
+  }
+
+  .resultText {
+    font-size: calc(var(--fs-xxxl) * 1.5);
+  }
+}
+
+@media (max-width: 660px) {
+  .rockPaperGameResultWrapper {
+    grid-template-areas:
+    'player ai'
+    'result result';
+    column-gap: 9vw;
+  }
+
+  .rockPaperGameResultWrapper[data-is-ai-choice-visible='true'] .choosenItemCard {
+    animation: none;
+  }
+
+  .choosenItemCardTitle {
+    order: 1;
+  }
+
+  .choosenItemCard[data-is-player='true'] {
+    transform: translateX(0);
+  }
+
+  .choosenItemCard[data-is-ai='true'] {
+    transform: translateX(0);
+  }
+
+  .resultText {
+    font-size: calc(var(--fs-xxxl) * 2);
+  }
+}
+
+@media (max-width: 460px) {
+  .rockPaperGameResultWrapper {
+    grid-template-areas:
+    'result'
+    'player'
+    'ai';
+    padding: 1.5em 0 2em;
+  }
+
+  .rockPaperGameResultWrapper[data-is-ai-choice-visible='true'] .choosenItemCard {
+    animation: choice 0.2s ease-in 0.6s forwards;
+  }
+
+  .choosenItemCard {
+    --translate-to-zero: translateY(0);
+    gap: 0.4em;
+  }
+
+  .choosenItemCard[data-is-player='true'],
+  .choosenItemCard[data-is-ai='true'] {
+    transform: translateY(-70%);
+  }
+
+  .choosenItemCardTitle {
+    order: 0;
+  }
+
+  .resultControls {
+    gap: 0.7em;
+    transform: translateY(-30%);
+  }
+
+  .resultText {
+    font-size: calc(var(--fs-xxxl) * 1.5);
   }
 }

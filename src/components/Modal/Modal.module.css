@@ -1,17 +1,33 @@
 .modalWrapper {
   position: absolute;
-  inset: 0 0 0 0;
+  left: 0;
+  right: 0;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 
 }
 
+.modalWrapper[data-is-close-animate='true'] .modalOverlay {
+  transform: scale(1);
+  animation: shrink 0.2s ease-in 0s forwards;
+}
+
+.modalWrapper[data-is-close-animate='true'] .modal {
+  transform: scale(1);
+  animation: shrink 0.2s ease-in 0.1s forwards;
+}
+
 .modalOverlay {
   position: absolute;
-  inset: 0 0 0 0;
+  width: 100%;
+  height: 100%;
   background: hsla(0, 0%, 0%, 0.6);
   z-index: 1;
+  transform: scale(0);
+  transform-origin: center;
+  animation: grow 0.2s ease-in 0.1s forwards;
 }
 
 .modal {
@@ -21,6 +37,9 @@
   margin-inline: 1em;
   position: relative;
   z-index: 1;
+  transform: scale(0);
+  transform-origin: center;
+  animation: grow 0.2s ease-in 0s forwards;
 }
 
 .modalHeader {
@@ -44,6 +63,19 @@
   outline: none;
   cursor: pointer;
   transition: var(--transition-duration);
+}
+
+/* animation */
+@keyframes grow {
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes shrink {
+  to {
+    transform: scale(0);
+  }
 }
 
 /* hover, focus */

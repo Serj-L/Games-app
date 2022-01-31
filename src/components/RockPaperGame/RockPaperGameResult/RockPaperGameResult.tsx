@@ -56,6 +56,7 @@ const rockPaperGameItems: IRockPaperGameItem[] = [
     ],
   },
 ];
+const gameItemChangeSizeBreakPoint = 910;
 
 const RockPaperGameResult: FC<RockPaperGameResultProps> = ({
   choosenItems,
@@ -63,8 +64,19 @@ const RockPaperGameResult: FC<RockPaperGameResultProps> = ({
   changeScore,
 }) => {
   const [winItem, setWinItem] = useState<RockPaperGameItemName | null>(null);
+  const [isItemBigSize, setIsItemBigSize] = useState<boolean>(window.innerWidth > gameItemChangeSizeBreakPoint);
   const [isShowAiChoosenItem, setIsShowAiChoosenItem] = useState<boolean>(false);
   const [isShowResult, setIsShowResult] = useState<boolean>(false);
+
+  useEffect(() => {
+    const windowResizeHandler = () => {
+      setIsItemBigSize(window.innerWidth > gameItemChangeSizeBreakPoint);
+    };
+
+    window.addEventListener('resize', windowResizeHandler);
+
+    return () => window.removeEventListener('resize', windowResizeHandler);
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -94,20 +106,25 @@ const RockPaperGameResult: FC<RockPaperGameResultProps> = ({
   }, [isShowResult, winItem, choosenItems.player, changeScore]);
 
   return (
-    <div className={styles.rockPaperGameResultWrapper}>
-      <div className={styles.choosenItemCard}>
+    <div
+      className={styles.rockPaperGameResultWrapper}
+      data-is-ai-choice-visible={isShowAiChoosenItem}
+      data-is-result-visible={isShowResult}
+    >
+      <div
+        className={styles.choosenItemCard}
+        data-is-player={true}
+        data-is-outlined={winItem === choosenItems.player}
+      >
         <span className={styles.choosenItemCardTitle}>YOU PICKED</span>
         <RockPaperGameItem
           itemName={choosenItems.player}
-          isBigSize={true}
+          isBigSize={isItemBigSize}
           isOutlined={(winItem && isShowResult) ? winItem === choosenItems.player : false}
         />
       </div>
-      <div
-        className={styles.resultControls}
-        data-is-visible={isShowResult}
-      >
-        <span className={styles.resultText}>{winItem ? `YOU ${winItem === choosenItems.player ? 'WIN' : 'LOSE'} ` : 'DRAW'}</span>
+      <div className={styles.resultControls}>
+        <span className={styles.resultText}>{winItem ? `YOU ${winItem === choosenItems.player ? 'WIN' : 'LOSE'} ` : 'IT\'S A DRAW'}</span>
         <Button
           title='PLAY AGAIN'
           fontSize={18}
@@ -115,11 +132,15 @@ const RockPaperGameResult: FC<RockPaperGameResultProps> = ({
           onClickHandler={onPlayAgainButtonHandler}
         />
       </div>
-      <div className={styles.choosenItemCard}>
+      <div
+        className={styles.choosenItemCard}
+        data-is-ai={true}
+        data-is-outlined={winItem === choosenItems.ai}
+      >
         <span className={styles.choosenItemCardTitle}>THE HOUSE PICKED</span>
         <RockPaperGameItem
           itemName={choosenItems.ai}
-          isBigSize={true}
+          isBigSize={isItemBigSize}
           isOutlined={(winItem && isShowResult) ? winItem === choosenItems.ai : false}
           isVisible={isShowAiChoosenItem}
         />

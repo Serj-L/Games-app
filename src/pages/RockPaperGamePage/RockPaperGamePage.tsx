@@ -39,9 +39,10 @@ const choosenItemsInitialValues: IRockPaperGameChoosenItem = {
 };
 
 const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
+  const { gameType = RockPaperGameTypes.NORMAL } = useParams();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalTitle, setModalTitle] = useState<string>('');
-  const { gameType = RockPaperGameTypes.NORMAL } = useParams();
+  const [scrollY, setScrollY] = useState<number>(0);
   const [score, setScore] = useState<number>(getRockPaperGameScoreFromLocalStorage(gameType));
   const gameItems: RockPaperGameItemName[] = gameType === RockPaperGameTypes.NORMAL
     ? ['rock', 'paper', 'scissors']
@@ -55,6 +56,7 @@ const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
     }
     setModalTitle('Confirmation');
     setIsModalOpen(true);
+    setScrollY(window.scrollY);
   };
 
   const onConfirmResetHandler = () => {
@@ -63,7 +65,7 @@ const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
     setIsModalOpen(false);
   };
 
-  const onPlayerChooseHandler = (playerChoice: RockPaperGameItemName) => {
+  const onPlayerChoiceHandler = (playerChoice: RockPaperGameItemName) => {
     const aiChoice = gameItems[randomInteger(0, gameItems.length - 1)];
 
     setChoosenItems({
@@ -85,8 +87,20 @@ const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
   const onRulesButtonClickHandler = () => {
     setModalTitle('RULES');
     setIsModalOpen(true);
+    setScrollY(window.scrollY);
   };
 
+  // scroll page to top when user switches between game items list and game result
+  useEffect(() => {
+    if (!window.scrollY) {
+      return;
+    }
+    window.scrollTo({
+      top: 0,
+    });
+  }, [isShowResult]);
+
+  // set game score in local storage
   useEffect(() => {
     if (score === getRockPaperGameScoreFromLocalStorage(gameType)) {
       return;
@@ -125,7 +139,7 @@ const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
                   <RockPaperGameItem
                     itemName={item}
                     isBigSize={false}
-                    onClickHandler={(itemName) => onPlayerChooseHandler(itemName)}
+                    onClickHandler={(itemName) => onPlayerChoiceHandler(itemName)}
                   />
                 </li>
               );
@@ -145,6 +159,7 @@ const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
       <Modal
         isOpen={isModalOpen}
         modalTitle={modalTitle}
+        windowScrollTopOffset={scrollY}
         closeModalHandler={() => setIsModalOpen(false)}
       >
         {
