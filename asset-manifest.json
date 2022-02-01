@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Games-app/static/css/main.fb68ee68.css",
+    "main.js": "/Games-app/static/js/main.2cff5445.js",
+    "static/media/extendedGamePreview.jpg": "/Games-app/static/media/extendedGamePreview.5dee31a24405fe21ea46.jpg",
+    "static/media/normalGamePreview.jpg": "/Games-app/static/media/normalGamePreview.7acd3f4d51e14655f9a9.jpg",
+    "static/media/image-rules-bonus.svg": "/Games-app/static/media/image-rules-bonus.513320fbf32ba9e4a81fba903a77b85f.svg",
+    "static/media/image-rules.svg": "/Games-app/static/media/image-rules.258b753fb6284dc8ae00c5b2fa7938c0.svg",
+    "static/media/icon-lizard.svg": "/Games-app/static/media/icon-lizard.0f83914cca1adc9454d1bdceb17610b0.svg",
+    "static/media/icon-paper.svg": "/Games-app/static/media/icon-paper.8b57a6b108c1b8ae82931a39b10f96a2.svg",
+    "static/media/icon-spock.svg": "/Games-app/static/media/icon-spock.f4d7eee84cf50913d73967948d97d63a.svg",
+    "static/media/icon-scissors.svg": "/Games-app/static/media/icon-scissors.3b1a5d7eb0b2f1fd3e955865ec04d9ed.svg",
+    "index.html": "/Games-app/index.html",
+    "static/media/file-image-regular.svg": "/Games-app/static/media/file-image-regular.d26b92d707bc9b0aeba80c8791131dc6.svg",
+    "static/media/icon-rock.svg": "/Games-app/static/media/icon-rock.476e90a9646a87bb3645d2f09f4f7fba.svg",
+    "static/media/bg-pentagon.svg": "/Games-app/static/media/bg-pentagon.1ad6d36532b75eb7d82cabe6e8d92aef.svg",
+    "static/media/bg-triangle.svg": "/Games-app/static/media/bg-triangle.c0c30b562fdb087666594c1bc0d512f6.svg",
+    "main.fb68ee68.css.map": "/Games-app/static/css/main.fb68ee68.css.map",
+    "main.2cff5445.js.map": "/Games-app/static/js/main.2cff5445.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fb68ee68.css",
+    "static/js/main.2cff5445.js"
+  ]
+}
