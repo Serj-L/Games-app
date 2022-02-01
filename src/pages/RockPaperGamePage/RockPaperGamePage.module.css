@@ -5,6 +5,14 @@
   padding-block: 2rem;
 }
 
+.rockPaperGameHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
 .rockPaperGameContentWarpper {
   display: flex;
   justify-content: center;

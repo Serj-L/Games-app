@@ -110,7 +110,7 @@ const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
 
   return (
     <div className={styles.rockPaperGamePageWrapper}>
-      <header>
+      <header className={styles.rockPaperGameHeader}>
         <RockPaperTitleScore
           gameItems={gameItems}
           gameScore={score}
