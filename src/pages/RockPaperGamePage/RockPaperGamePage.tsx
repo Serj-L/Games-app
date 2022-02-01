@@ -80,9 +80,9 @@ const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
     setScore(prevScore => prevScore + result);
   }, []);
 
-  const onPlayAgainButtonHandler = useCallback(() => {
+  const onPlayAgainButtonHandler = () => {
     setIsShowResult(false);
-  }, []);
+  };
 
   const onRulesButtonClickHandler = () => {
     setModalTitle('RULES');

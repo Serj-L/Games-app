@@ -17,6 +17,7 @@ const RockPaperTitleScore: FC<RockPaperTitleScoreProps> = ({
   gameType,
   onClickHandler,
 }) => {
+
   return (
     <div className={styles.titleScoreWrapper}>
       <ul

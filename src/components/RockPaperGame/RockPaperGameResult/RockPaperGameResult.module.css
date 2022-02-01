@@ -19,17 +19,15 @@
 
 .choosenItemCard {
   --translate-to-zero: translateX(0);
-  --translate-x-value: 50%
+  transform: translateX(var(--translate-x-value)); /* variable '--translate-x-value' computed in RockPaperGameResult component */
 }
 
 .choosenItemCard[data-is-player='true'] {
   grid-area: player;
-  transform: translateX(var(--translate-x-value));
 }
 
 .choosenItemCard[data-is-ai='true'] {
   grid-area: ai;
-  transform: translateX(calc(var(--translate-x-value) * -1));
 }
 
 .choosenItemCard[data-is-outlined='false'] {
@@ -56,7 +54,7 @@
 
 .resultControls > * {
   width: 100%;
-  max-width: max-content;
+  min-width: max-content;
 }
 
 .rockPaperGameResultWrapper[data-is-ai-choice-visible='true'] .choosenItemCard {
@@ -94,13 +92,17 @@
 }
 
 /* adaptive */
-@media (max-width: 992px) {
+@media (max-width: 1020px) {
   .rockPaperGameResultWrapper {
-    column-gap: 1vw;
+    column-gap: 3vw;
   }
 
-  .choosenItemCard {
-    --translate-x-value: 30%
+  .resultControls {
+    gap: 1.5em;
+  }
+
+  .resultText {
+    font-size: calc(var(--fs-xxxl) * 1.7);
   }
 }
 
@@ -109,8 +111,8 @@
     column-gap: 2em;
   }
 
-  .choosenItemCard {
-    --translate-x-value: 50%
+  .choosenItemCard[data-is-player='true'] {
+    margin-right: 1em;
   }
 
   .choosenItemCardTitle {
@@ -126,7 +128,13 @@
   }
 }
 
-@media (max-width: 660px) {
+@media (max-width: 768px) {
+  .rockPaperGameResultWrapper {
+    column-gap: 1em;
+  }
+}
+
+@media (max-width: 690px) {
   .rockPaperGameResultWrapper {
     grid-template-areas:
     'player ai'
@@ -139,15 +147,19 @@
     animation: none;
   }
 
+  .choosenItemCard[data-is-player='true'] {
+    margin-right: 0;
+  }
+
+  .resultControls {
+    margin-right: 1em;
+  }
+
   .choosenItemCardTitle {
     order: 1;
   }
 
-  .choosenItemCard[data-is-player='true'] {
-    transform: translateX(0);
-  }
-
-  .choosenItemCard[data-is-ai='true'] {
+  .choosenItemCard {
     transform: translateX(0);
   }
 
@@ -185,6 +197,7 @@
 
   .resultControls {
     gap: 0.7em;
+    margin-right: 0;
     transform: translateY(-30%);
   }
 
