@@ -1,6 +1,6 @@
 export { default as Container } from './Container/Container';
 export { default as GameCard } from './GameCard/GameCard';
-export { default as BackToGameList } from './BackToGameList/BackToGameList';
+export { default as BackToGamesList } from './BackToGamesList/BackToGamesList';
 export { default as Portal } from './Portal/Portal';
 export { default as Modal } from './Modal/Modal';
 export { default as Button } from './Button/Button';

@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { RoutesEnum } from '../../types/';
+import { RoutesEnum } from '../../types';
 
-import styles from './BackToGameList.module.css';
+import styles from './BackToGamesList.module.css';
 
-interface BackToGameListProps {}
+interface BackToGamesListProps {}
 
-const BackToGameList: FC<BackToGameListProps> = () => {
+const BackToGamesList: FC<BackToGamesListProps> = () => {
   return (
     <NavLink
       className={styles.backToHomeLink}
@@ -18,4 +18,4 @@ const BackToGameList: FC<BackToGameListProps> = () => {
   );
 };
 
-export default BackToGameList;
+export default BackToGamesList;

@@ -13,7 +13,7 @@ import {
 } from '../../api/LocalStorage';
 
 import {
-  BackToGameList,
+  BackToGamesList,
   RockPaperTitleScore,
   Modal,
   Button,
@@ -110,14 +110,15 @@ const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
 
   return (
     <div className={styles.rockPaperGamePageWrapper}>
-      <RockPaperTitleScore
-        gameItems={gameItems}
-        gameScore={score}
-        gameType={gameType}
-        onClickHandler={onScoreClickHandler}
-      />
-
-      <div className={styles.rockPaperGameContentWarpper}>
+      <header>
+        <RockPaperTitleScore
+          gameItems={gameItems}
+          gameScore={score}
+          gameType={gameType}
+          onClickHandler={onScoreClickHandler}
+        />
+      </header>
+      <main className={styles.rockPaperGameContentWarpper}>
         { isShowResult
           ? <RockPaperGameResult
             choosenItems={choosenItems}
@@ -146,15 +147,15 @@ const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
             })}
           </ul>
         }
-      </div>
-      <div className={styles.rockPaperGamePageControls}>
-        <BackToGameList />
+      </main>
+      <footer className={styles.rockPaperGamePageControls}>
+        <BackToGamesList />
         <Button
           title='RULES'
           fontSize={16}
           onClickHandler={onRulesButtonClickHandler}
         />
-      </div>
+      </footer>
 
       <Modal
         isOpen={isModalOpen}
