@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, CSSProperties } from 'react';
 
 import { RockPaperGameItemName } from '../../../types';
 
@@ -10,6 +10,15 @@ import spockIconPath from '../../../images/rock-paper/icon-spock.svg';
 
 import styles from './RockPaperGameItem.module.css';
 
+interface RockPaperGameItemProps {
+  itemName: RockPaperGameItemName,
+  isBigSize?: boolean,
+  isOutlined?: boolean,
+  isVisible?: boolean,
+  isCursorPointer?: boolean,
+  onClickHandler?: (itemName: RockPaperGameItemName) => void,
+}
+
 const itemsIconPath = {
   rock: rockIconPath,
   paper: paperIconPath,
@@ -17,30 +26,37 @@ const itemsIconPath = {
   lizard: lizardIconPath,
   spock: spockIconPath,
 };
-
-interface RockPaperGameItemProps {
-  itemName: RockPaperGameItemName,
-  isBigSize?: boolean,
-  isOutlined?: boolean,
-  isVisible?: boolean,
-  onClickHandler?: (itemName: RockPaperGameItemName) => void,
-}
+const stylesCursorPointer: CSSProperties = {
+  cursor: 'pointer',
+  pointerEvents: 'auto',
+};
+const stylesCursorAuto: CSSProperties = {
+  cursor: 'auto',
+  pointerEvents: 'none',
+};
 
 const RockPaperGameItem: FC<RockPaperGameItemProps> = ({
   itemName,
   isBigSize = false,
   isOutlined = false,
   isVisible = true,
+  isCursorPointer = true,
   onClickHandler,
 }) => {
   return (
-    <>
+    <div
+      className={styles.rockPaperGameItemContainer}
+      style={ isCursorPointer ? stylesCursorPointer : stylesCursorAuto }
+      data-is-outlined={isOutlined}
+      data-is-big={isBigSize}
+    >
+      <div className={styles.thirdOutline}></div>
+      <div className={styles.secondOutline}></div>
+      <div className={styles.firstOutline}></div>
       <div
         className={styles.rockPaperGameItemWrapper}
-        tabIndex={1}
+        tabIndex={isCursorPointer ? 1 : undefined}
         data-item-name={itemName}
-        data-is-big={isBigSize}
-        data-is-outlined={isOutlined}
         data-is-visible={isVisible}
         onClick={onClickHandler ? () => onClickHandler(itemName) : undefined}
         onKeyDown={onClickHandler
@@ -56,7 +72,7 @@ const RockPaperGameItem: FC<RockPaperGameItemProps> = ({
           src={itemsIconPath[itemName]}
           alt={`${itemName} icon`} />
       </div>
-    </>
+    </div>
   );
 };
 

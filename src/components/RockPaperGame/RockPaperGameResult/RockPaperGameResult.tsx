@@ -76,7 +76,7 @@ const RockPaperGameResult: FC<RockPaperGameResultProps> = ({
   const [isShowAiChoosenItem, setIsShowAiChoosenItem] = useState<boolean>(false);
   const [isShowResult, setIsShowResult] = useState<boolean>(false);
   const [isItemBigSize, setIsItemBigSize] = useState<boolean>(window.innerWidth > gameItemChangeSizeBreakPoint);
-  const [choosenItemTranslateXVariable, setChoosenItemTranslateXVariable] = useState<number>(50);
+  const [choosenItemTranslateXVariable, setChoosenItemTranslateXVariable] = useState<number>(100);
   const gameResultWrapperElement = useRef<HTMLDivElement>(null);
   const gameResultControlsElement = useRef<HTMLDivElement>(null);
 
@@ -143,6 +143,7 @@ const RockPaperGameResult: FC<RockPaperGameResultProps> = ({
           itemName={choosenItems.player}
           isBigSize={isItemBigSize}
           isOutlined={(winItem && isShowResult) ? winItem === choosenItems.player : false}
+          isCursorPointer={false}
         />
       </div>
       <div
@@ -169,6 +170,7 @@ const RockPaperGameResult: FC<RockPaperGameResultProps> = ({
           isBigSize={isItemBigSize}
           isOutlined={(winItem && isShowResult) ? winItem === choosenItems.ai : false}
           isVisible={isShowAiChoosenItem}
+          isCursorPointer={false}
         />
       </div>
     </div>
