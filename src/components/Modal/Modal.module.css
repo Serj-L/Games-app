@@ -6,7 +6,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .modalWrapper[data-is-close-animate='true'] .modalOverlay {
@@ -31,15 +30,19 @@
 }
 
 .modal {
+  --margin-value: 0.7em;
+
   background: hsl(0, 0%, 100%);
   padding: 1.5em;
   border-radius: var(--radius-md);
-  margin-inline: 1em;
+  margin: 0.7em;
+  max-height: calc(100% - (var(--margin-value) * 2));
   position: relative;
   z-index: 1;
   transform: scale(0);
   transform-origin: center;
   animation: grow 0.2s ease-in 0s forwards;
+  overflow: auto;
 }
 
 .modalHeader {
