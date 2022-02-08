@@ -1,4 +1,10 @@
-import { FC, useState, useEffect, useRef } from 'react';
+import {
+  FC,
+  useState,
+  useEffect,
+  useRef,
+  memo,
+} from 'react';
 
 import {
   IRockPaperGameItem,
@@ -177,4 +183,4 @@ const RockPaperGameResult: FC<RockPaperGameResultProps> = ({
   );
 };
 
-export default RockPaperGameResult;
+export const MemoizedRockPaperGameResult = memo(RockPaperGameResult);

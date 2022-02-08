@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { RoutesEnum } from '../../types';
@@ -18,4 +18,4 @@ const BackToGamesList: FC<BackToGamesListProps> = () => {
   );
 };
 
-export default BackToGamesList;
+export const MemoizedBackToGamesList = memo(BackToGamesList);

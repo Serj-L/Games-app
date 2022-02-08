@@ -69,7 +69,7 @@ const Modal: FC<ModalProps> = ({
                 className={styles.btnClose}
                 onClick = {closeModalHandler}
               >
-                <CrossIcon/>;
+                <CrossIcon />
               </button>
             </div>
             <div className={styles.modalContent}>

@@ -1,0 +1,23 @@
+.titleWrapper {
+  align-self: center;
+  font-weight: var(--fw-bold);
+  line-height: 0.85;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* adaptive */
+@media (max-width: 385px) {
+  .titleWrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    line-height: 1;
+  }
+
+  .gameTitle:not(:last-child):after {
+    content: ',';
+    margin-right: 0.2em;
+  }
+}

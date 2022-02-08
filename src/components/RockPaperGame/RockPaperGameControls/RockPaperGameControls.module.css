@@ -1,0 +1,18 @@
+.rockPaperGameControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+
+.rulesImg {
+  width: 100%;
+}
+
+/* adaptive */
+@media (max-width: 340px) {
+  .rockPaperGameControls {
+    flex-direction: column-reverse;
+  }
+}

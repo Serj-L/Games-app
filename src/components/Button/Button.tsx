@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import styles from './Button.module.css';
 
@@ -39,4 +39,4 @@ const Button: FC<ButtonProps> = ({
   );
 };
 
-export default Button;
+export const MemoizedButton = memo(Button);

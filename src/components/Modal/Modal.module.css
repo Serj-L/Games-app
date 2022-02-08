@@ -65,7 +65,6 @@
   border: none;
   outline: none;
   cursor: pointer;
-  transition: var(--transition-duration);
 }
 
 /* animation */

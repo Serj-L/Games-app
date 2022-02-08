@@ -1,4 +1,4 @@
-import { FC, CSSProperties } from 'react';
+import { FC, memo, CSSProperties } from 'react';
 
 import { RockPaperGameItemName } from '../../../types';
 
@@ -43,6 +43,7 @@ const RockPaperGameItem: FC<RockPaperGameItemProps> = ({
   isCursorPointer = true,
   onClickHandler,
 }) => {
+
   return (
     <div
       className={styles.rockPaperGameItemContainer}
@@ -76,4 +77,4 @@ const RockPaperGameItem: FC<RockPaperGameItemProps> = ({
   );
 };
 
-export default RockPaperGameItem;
+export const MemoizedRockPaperGameItem = memo(RockPaperGameItem);
