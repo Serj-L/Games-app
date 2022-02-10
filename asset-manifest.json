@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Games-app/static/css/main.7ceb60c7.css",
-    "main.js": "/Games-app/static/js/main.2920d1c0.js",
+    "main.css": "/Games-app/static/css/main.8d3433e7.css",
+    "main.js": "/Games-app/static/js/main.f55d90f9.js",
     "static/media/extendedGamePreview.jpg": "/Games-app/static/media/extendedGamePreview.5dee31a24405fe21ea46.jpg",
     "static/media/normalGamePreview.jpg": "/Games-app/static/media/normalGamePreview.7acd3f4d51e14655f9a9.jpg",
     "static/media/image-rules-bonus.svg": "/Games-app/static/media/image-rules-bonus.513320fbf32ba9e4a81fba903a77b85f.svg",
@@ -15,11 +15,11 @@
     "static/media/icon-rock.svg": "/Games-app/static/media/icon-rock.476e90a9646a87bb3645d2f09f4f7fba.svg",
     "static/media/bg-pentagon.svg": "/Games-app/static/media/bg-pentagon.1ad6d36532b75eb7d82cabe6e8d92aef.svg",
     "static/media/bg-triangle.svg": "/Games-app/static/media/bg-triangle.c0c30b562fdb087666594c1bc0d512f6.svg",
-    "main.7ceb60c7.css.map": "/Games-app/static/css/main.7ceb60c7.css.map",
-    "main.2920d1c0.js.map": "/Games-app/static/js/main.2920d1c0.js.map"
+    "main.8d3433e7.css.map": "/Games-app/static/css/main.8d3433e7.css.map",
+    "main.f55d90f9.js.map": "/Games-app/static/js/main.f55d90f9.js.map"
   },
   "entrypoints": [
-    "static/css/main.7ceb60c7.css",
-    "static/js/main.2920d1c0.js"
+    "static/css/main.8d3433e7.css",
+    "static/js/main.f55d90f9.js"
   ]
 }
