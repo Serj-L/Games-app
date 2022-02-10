@@ -1,9 +1,13 @@
-import React from 'react';
+import { HashRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('App main title', () => {
+  render(
+    <HashRouter>
+      <App />
+    </HashRouter>,
+  );
+  const mainTitle = screen.getByText(/Choose game to play/i);
+  expect(mainTitle).toBeInTheDocument();
 });

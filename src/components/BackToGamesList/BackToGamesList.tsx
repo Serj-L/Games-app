@@ -7,7 +7,7 @@ import styles from './BackToGamesList.module.css';
 
 interface BackToGamesListProps {}
 
-const BackToGamesList: FC<BackToGamesListProps> = () => {
+export const BackToGamesList: FC<BackToGamesListProps> = () => {
   return (
     <NavLink
       className={styles.backToHomeLink}

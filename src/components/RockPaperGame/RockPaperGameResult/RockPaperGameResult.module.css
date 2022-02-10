@@ -45,6 +45,8 @@
 }
 
 .resultControls {
+  --animation-delay: 0.2s; /* needed to fix in Firefox overlapping the resultControls element with an outlines of the gameItem element when we have gameItem element with outlines */
+
   grid-area: result;
   position: relative;
   z-index: 1;
@@ -57,12 +59,16 @@
   min-width: max-content;
 }
 
+.resultControls[data-is-draw='true'] {
+  --animation-delay: 0s;
+}
+
 .rockPaperGameResultWrapper[data-is-ai-choice-visible='true'] .choosenItemCard {
   animation: choice 0.2s ease-in 0.6s forwards;
 }
 
 .rockPaperGameResultWrapper[data-is-result-visible='true'] .resultControls {
-  animation: result 0.2s ease-in 0s forwards;
+  animation: result 0.2s ease-in var(--animation-delay) forwards;
 }
 
 .resultText {

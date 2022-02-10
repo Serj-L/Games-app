@@ -46,7 +46,7 @@ Users should be able to:
 - [React Router v6](https://reactrouter.com/)
 ### What I learned
 
-During developing this project I dive deeper into CSS Grid and custom properties.
+During developing this project I dive deeper into optimization in React and CSS Grid as well as CSS custom properties.
 ## Author
 
 - Website - [Serj-L](https://serj-l.github.io/Profile)

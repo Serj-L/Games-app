@@ -19,8 +19,8 @@ import {
 
 import {
   RockPaperGameTitleScore,
-  RockPaperGameAction,
-  RockPaperGameControls,
+  MemoizedRockPaperGameAction,
+  MemoizedRockPaperGameControls,
 } from '../../components/';
 
 import styles from './RockPaperGamePage.module.css';
@@ -63,14 +63,14 @@ const RockPaperGamePage: FC<RockPaperGamePageProps> = () => {
         />
       </header>
       <main className={styles.rockPaperGameContentWarpper}>
-        <RockPaperGameAction
+        <MemoizedRockPaperGameAction
           gameType={gameType}
           gameItems={gameItems}
           changeScore={changeScoreHandler}
         />
       </main>
       <footer>
-        <RockPaperGameControls gameType={gameType} />
+        <MemoizedRockPaperGameControls gameType={gameType} />
       </footer>
     </div>
   );

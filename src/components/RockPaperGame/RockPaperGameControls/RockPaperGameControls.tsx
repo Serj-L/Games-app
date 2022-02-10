@@ -3,8 +3,8 @@ import { FC, memo } from 'react';
 import { RockPaperGameTypes } from '../../../types';
 
 import {
-  BackToGamesList,
-  Button,
+  MemoizedBackToGamesList,
+  MemoizedButton,
   Modal,
 } from '../..';
 
@@ -27,8 +27,8 @@ const RockPaperGameControls: FC<RockPaperGameControlsProps> = ({ gameType }) => 
   return (
     <>
       <div className={styles.rockPaperGameControls}>
-        <BackToGamesList />
-        <Button
+        <MemoizedBackToGamesList />
+        <MemoizedButton
           title='RULES'
           fontSize={16}
           onClickHandler={modalOpenHandler}
@@ -51,4 +51,6 @@ const RockPaperGameControls: FC<RockPaperGameControlsProps> = ({ gameType }) => 
   );
 };
 
-export const MemoizedRockPaperGameControls = memo(RockPaperGameControls);
+const MemoizedRockPaperGameControls = memo(RockPaperGameControls);
+
+export default MemoizedRockPaperGameControls;

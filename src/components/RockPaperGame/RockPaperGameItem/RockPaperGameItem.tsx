@@ -1,4 +1,8 @@
-import { FC, memo, CSSProperties } from 'react';
+import {
+  FC,
+  CSSProperties,
+  memo,
+} from 'react';
 
 import { RockPaperGameItemName } from '../../../types';
 
@@ -35,7 +39,7 @@ const stylesCursorAuto: CSSProperties = {
   pointerEvents: 'none',
 };
 
-const RockPaperGameItem: FC<RockPaperGameItemProps> = ({
+export const RockPaperGameItem: FC<RockPaperGameItemProps> = ({
   itemName,
   isBigSize = false,
   isOutlined = false,
@@ -61,8 +65,8 @@ const RockPaperGameItem: FC<RockPaperGameItemProps> = ({
         data-is-visible={isVisible}
         onClick={onClickHandler ? () => onClickHandler(itemName) : undefined}
         onKeyDown={onClickHandler
-          ? (e) => {
-            if (e.key === 'Enter') {
+          ? (event) => {
+            if (event.key === 'Enter') {
               onClickHandler(itemName);
             }
           }

@@ -1,8 +1,4 @@
-import {
-  FC,
-  useCallback,
-  memo,
-} from 'react';
+import { FC } from 'react';
 
 import {
   RockPaperGameTypes,
@@ -12,7 +8,7 @@ import {
 import {
   Modal,
   Button,
-  RockPaperGameTitle,
+  MemoizedRockPaperGameTitle,
 } from '../..';
 
 import { useModal } from '../../../hooks/useModal';
@@ -38,22 +34,22 @@ const RockPaperGameTitleScore: FC<RockPaperGameTitleScoreProps> = ({
     modalCloseHandler,
   } = useModal();
 
-  const onScoreClickHandler = useCallback(() => {
+  const onScoreClickHandler = () => {
     if (!gameScore) {
       return;
     }
     modalOpenHandler();
-  }, [gameScore, modalOpenHandler]);
+  };
 
-  const onConfirmResetScoreHandler = useCallback(() => {
+  const onConfirmResetScoreHandler = () => {
     resetScore(0);
     modalCloseHandler();
-  }, [resetScore, modalCloseHandler]);
+  };
 
   return (
     <>
       <div className={styles.titleScoreWrapper}>
-        <RockPaperGameTitle
+        <MemoizedRockPaperGameTitle
           gameType={gameType}
           gameItems={gameItems}
         />
@@ -99,4 +95,4 @@ const RockPaperGameTitleScore: FC<RockPaperGameTitleScoreProps> = ({
   );
 };
 
-export const MemoizedRockPaperGameTitleScore = memo(RockPaperGameTitleScore);
+export default RockPaperGameTitleScore;

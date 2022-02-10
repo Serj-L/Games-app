@@ -36,4 +36,6 @@ const RockPaperGameTitle: FC<RockPaperGameTitleProps> = ({
   );
 };
 
-export const MemoizedRockPaperGameTitle = memo(RockPaperGameTitle);
+const MemoizedRockPaperGameTitle = memo(RockPaperGameTitle);
+
+export default MemoizedRockPaperGameTitle;

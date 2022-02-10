@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { FC } from 'react';
 
 import {
   RockPaperGameTypes,
@@ -53,4 +53,4 @@ const RockPaperGameItemsList: FC<RockPaperGameItemsListProps> = ({
   );
 };
 
-export const MemoizedRockPaperGameItemsList = memo(RockPaperGameItemsList);
+export default RockPaperGameItemsList;

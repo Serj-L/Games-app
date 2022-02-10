@@ -3,7 +3,6 @@ import {
   useState,
   useEffect,
   useRef,
-  memo,
 } from 'react';
 
 import {
@@ -13,8 +12,8 @@ import {
 } from '../../../types';
 
 import {
-  RockPaperGameItem,
-  Button,
+  MemoizedRockPaperGameItem,
+  MemoizedButton,
 } from '../../';
 
 import styles from './RockPaperGameResult.module.css';
@@ -145,7 +144,7 @@ const RockPaperGameResult: FC<RockPaperGameResultProps> = ({
         data-is-outlined={winItem === choosenItems.player}
       >
         <span className={styles.choosenItemCardTitle}>YOU PICKED</span>
-        <RockPaperGameItem
+        <MemoizedRockPaperGameItem
           itemName={choosenItems.player}
           isBigSize={isItemBigSize}
           isOutlined={(winItem && isShowResult) ? winItem === choosenItems.player : false}
@@ -154,10 +153,11 @@ const RockPaperGameResult: FC<RockPaperGameResultProps> = ({
       </div>
       <div
         className={styles.resultControls}
+        data-is-draw={!winItem}
         ref={gameResultControlsElement}
       >
         <span className={styles.resultText}>{winItem ? `YOU ${winItem === choosenItems.player ? 'WIN' : 'LOSE'} ` : 'IT\'S A DRAW'}</span>
-        <Button
+        <MemoizedButton
           title='PLAY AGAIN'
           fontSize={18}
           isTransparent={false}
@@ -171,7 +171,7 @@ const RockPaperGameResult: FC<RockPaperGameResultProps> = ({
         style={{ ['--translate-x-value' as string] : `calc((${choosenItemTranslateXVariable}px - 15%) * -1)` }}
       >
         <span className={styles.choosenItemCardTitle}>THE HOUSE PICKED</span>
-        <RockPaperGameItem
+        <MemoizedRockPaperGameItem
           itemName={choosenItems.ai}
           isBigSize={isItemBigSize}
           isOutlined={(winItem && isShowResult) ? winItem === choosenItems.ai : false}
@@ -183,4 +183,4 @@ const RockPaperGameResult: FC<RockPaperGameResultProps> = ({
   );
 };
 
-export const MemoizedRockPaperGameResult = memo(RockPaperGameResult);
+export default RockPaperGameResult;

@@ -12,7 +12,7 @@ interface ButtonProps {
   onClickHandler: () => void;
 }
 
-const Button: FC<ButtonProps> = ({
+export const Button: FC<ButtonProps> = ({
   title,
   fontSize,
   isDissabled = false,

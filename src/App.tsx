@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { RoutesEnum } from './types/';
 import {
   AppRouter,
